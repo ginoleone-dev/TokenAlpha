@@ -181,6 +181,7 @@ export default function Home() {
             borderRadius: "20px",
             p: "40px 40px",
             mt: "20px",
+            mb: "20px",
             width: {
               xs: "380px",
               sm: "600px",
