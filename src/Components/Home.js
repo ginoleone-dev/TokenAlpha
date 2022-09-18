@@ -127,11 +127,11 @@ export default function Home() {
     },
   };
 
-  console.log(data);
+
 
   return (
     <Box>
-      <Container >
+      <Container sx={{mt:'20px'}} >
         <Container
           // Introduction section
           sx={{

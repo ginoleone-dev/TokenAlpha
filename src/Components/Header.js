@@ -54,7 +54,7 @@ const Header = () => {
             }}
           >
             <Link to={"/"} style={{ textDecoration: "none", color: "#FFEE32" }}>
-              CRYPTOSTATS
+              TOKENALPHA
             </Link>
           </Typography>
 
