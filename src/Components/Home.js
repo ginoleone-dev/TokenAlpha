@@ -76,13 +76,13 @@ export default function Home() {
   const avgPrice = (
     pricesLast1Year?.reduce((sum, currentPrice) => sum + currentPrice) /
     currentDays
-  ).toFixed(2);
+  )?.toFixed(2);
 
   
 
-  const lowestPrice = (pricesLast1Year?.reduce((sum, currentPrice) => Math.min(sum, currentPrice))).toFixed(2)
+  const lowestPrice = (pricesLast1Year?.reduce((sum, currentPrice) => Math.min(sum, currentPrice)))?.toFixed(2)
 
-   const highestPrice = (pricesLast1Year?.reduce((sum, currentPrice) => Math.max(sum, currentPrice))).toFixed(2)
+   const highestPrice = (pricesLast1Year?.reduce((sum, currentPrice) => Math.max(sum, currentPrice)))?.toFixed(2)
  
 
 
