@@ -122,7 +122,7 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 fontWeight={600}
                 color={"#FFD100"}
               >
-                High: {highestPrice}
+                High: ${highestPrice}
               </Typography>
               <Typography
                 fontSize={20}
@@ -130,7 +130,7 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 fontWeight={600}
                 color={"#FFD100"}
               >
-                Low: {lowestPrice}
+                Low: ${lowestPrice}
               </Typography>
             </Container>
           </Container>

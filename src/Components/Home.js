@@ -40,9 +40,9 @@ export default function Home() {
   const firstMk = data?.market_caps?.slice(-currentDays)[0][1];
 
   const marketCapDifference = (
-    ((lastMk?.toFixed(2) - firstMk?.toFixed(2)) / lastMk?.toFixed(2)) *
-    100
+    ((lastMk?.toFixed(2) - firstMk?.toFixed(2)) / firstMk?.toFixed(2) ) * 100
   )?.toFixed(2);
+
 
   // Volume
 
@@ -57,10 +57,11 @@ export default function Home() {
   ][1];
 
   const firstVolume = data?.total_volumes?.slice(-currentDays)[0][1];
-
+  
+  console.log(lastVolume, firstVolume)
   const volumeDifference = (
     ((lastVolume?.toFixed(2) - firstVolume?.toFixed(2)) /
-      lastVolume?.toFixed(2)) *
+      firstVolume?.toFixed(2)) *
     100
   )?.toFixed(2);
 
