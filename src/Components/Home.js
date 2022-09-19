@@ -71,8 +71,15 @@ export default function Home() {
   });
 
   const datesLast1Year = data?.prices?.slice(-currentDays)?.map((timestamp) => {
-    return new Date(timestamp[0]).getDate();
+    const date = new Date(timestamp[0]).toString()
+ 
+    return date.split(' ').slice(1,3).join(' ');
   });
+
+  const newDate = datesLast1Year?.map((date) => {console.log(typeof date)})
+ 
+  
+  
 
   const avgPrice = (
     pricesLast1Year?.reduce((sum, currentPrice) => sum + currentPrice) /
