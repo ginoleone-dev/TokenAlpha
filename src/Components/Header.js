@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 
 import { useState } from "react";
 
-const pages = ["About", "Contact"];
+const pages = ["About"];
 
 const Header = () => {
   const [anchorElNav, setAnchorElNav] = useState(null);
@@ -50,7 +50,7 @@ const Header = () => {
               fontWeight: 800,
               letterSpacing: ".3rem",
               textDecoration: "none",
-              fontSize: { xs: "1rem", sm: "1.3em" },
+              fontSize: { xs: "1rem", sm: "1.5em" },
             }}
           >
             <Link to={"/"} style={{ textDecoration: "none", color: "#FFEE32" }}>
@@ -104,6 +104,7 @@ const Header = () => {
                   color: "#FFEE32",
                   display: "block",
                   fontSize: { xs: "13px", md: "16px" },
+                  fontFamily: "monospace",
                 }}
               >
                 <Link

@@ -44,7 +44,7 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
 
             <Typography fontSize={{ xs: 15, sm: 25 }} color={"#D6D6D6"}>
               Here is the price action of the last {currentDays} days for{" "}
-              {capitalizedCoin} with an average price of ${avgPrice}
+              {capitalizedCoin}
             </Typography>
             {loaded && <BarChart chartData={barChartData} />}
             <Typography marginTop={2} fontSize={10} color={"white"}>
@@ -59,6 +59,28 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
               marginTop:{xs:'20px', md:'0px'}
             }}
           >
+                        <Container
+              sx={{
+                maxWidth: { xs: "350px" },
+                backgroundColor: "#202020",
+                color: "white",
+                p: "10px 20px",
+                borderRadius: "20px",
+                marginTop:{xs:'20px'}
+              }}
+            >
+              <Typography fontSize={{ xs: 20, md: 22 }} textAlign={"center"}>
+                Average Price for the last {currentDays} days:{" "}
+              </Typography>
+              <Typography
+                fontSize={23}
+                textAlign={"center"}
+                fontWeight={600}
+                color={"#FFD100"}
+              >
+                ${avgPrice}
+              </Typography>
+            </Container>
             <Container
               sx={{
                 maxWidth: { xs: "350px" },
@@ -69,11 +91,11 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 borderRadius: "20px",
               }}
             >
-              <Typography fontSize={{ xs: 20, md: 25 }} textAlign={"center"}>
-                Market Cap change in the last {currentDays} days:{" "}
+              <Typography fontSize={{ xs: 20, md: 22 }} textAlign={"center"}>
+                Market Cap change for the last {currentDays} days:{" "}
               </Typography>
               <Typography
-                fontSize={{ xs: 25 }}
+                fontSize={{ xs: 23 }}
                 textAlign={"center"}
                 fontWeight={600}
                 color={"#FFD100"}
@@ -91,11 +113,11 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 marginTop:{xs:'20px'}
               }}
             >
-              <Typography fontSize={{ xs: 20, md: 25 }} textAlign={"center"}>
-                Volume change in the last {currentDays} days:{" "}
+              <Typography fontSize={{ xs: 20, md: 22 }} textAlign={"center"}>
+                Volume change for the last {currentDays} days:{" "}
               </Typography>
               <Typography
-                fontSize={25}
+                fontSize={23}
                 textAlign={"center"}
                 fontWeight={600}
                 color={"#FFD100"}
@@ -103,6 +125,7 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 {volumeDifference}%
               </Typography>
             </Container>
+
             <Container
               sx={{
                 maxWidth: { xs: "350px" },
@@ -113,16 +136,8 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 marginTop:{xs:'20px'}
               }}
             >
-              <Typography fontSize={{ xs: 20, md: 25 }} textAlign={"center"}>
-                Lowest and highest price in the last {currentDays} days
-              </Typography>
-              <Typography
-                fontSize={20}
-                textAlign={"center"}
-                fontWeight={600}
-                color={"#FFD100"}
-              >
-                High: ${highestPrice}
+              <Typography fontSize={{ xs: 20, md: 22 }} textAlign={"center"}>
+                Lowest and highest price for the last {currentDays} days
               </Typography>
               <Typography
                 fontSize={20}
@@ -131,6 +146,15 @@ export default function PriceBarChart({currentDays, capitalizedCoin, avgPrice, l
                 color={"#FFD100"}
               >
                 Low: ${lowestPrice}
+                
+              </Typography>
+              <Typography
+                fontSize={20}
+                textAlign={"center"}
+                fontWeight={600}
+                color={"#FFD100"}
+              >
+                High: ${highestPrice}
               </Typography>
             </Container>
           </Container>

@@ -139,7 +139,7 @@ export default function Home() {
 
   return (
     <Box>
-      <Container sx={{mt:'20px'}} >
+      <Box sx={{mt:'20px'}} >
         <Container
           // Introduction section
           sx={{
@@ -180,7 +180,7 @@ export default function Home() {
             <Selectcoin />
           </Container>
           <PriceBarChart currentDays={currentDays} capitalizedCoin={capitalizedCoin} avgPrice = {avgPrice} loaded={loaded} barChartData={barChartData} marketCapDifference={marketCapDifference} volumeDifference={volumeDifference} lowestPrice={lowestPrice} highestPrice={highestPrice}/>
-      </Container>
+      </Box>
     </Box>
   );
 }
