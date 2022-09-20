@@ -1,4 +1,4 @@
-import { Box, Container, Typography } from "@mui/material";
+import { Box, Button, Container, Typography } from "@mui/material";
 import React from "react";
 import Header from "./Header";
 import apiImage from "../Images/api-visual.png";
@@ -58,6 +58,23 @@ export default function About() {
           src={apiImage}
           style={{ width: "70%", borderRadius: "10px", marginTop: "10px" }}
         />
+      </Container>
+      <Container sx={{ mt: "20px", display: "flex", justifyContent: "end" }}>
+        <Button
+          href="https://leonedevelopment.io/"
+          target="_blank"
+          variant={"contained"}
+          sx={{
+            backgroundColor: "#202020",
+            my: "14px",
+            "&:hover": {
+              backgroundColor: "#FFD100",
+              color: "#202020",
+            },
+          }}
+        >
+          Back to portfolio
+        </Button>
       </Container>
     </Container>
   );
