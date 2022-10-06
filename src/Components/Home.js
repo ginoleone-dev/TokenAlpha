@@ -27,9 +27,11 @@ export default function Home() {
     return res.data;
   });
 
+  let monthAgo = new Date().toISOString().split("T")[0];
+
   const fetchNewsData = useQuery(["new", currentCoin], async () => {
     const res = await Axios.get(
-      `https://newsapi.org/v2/everything?q=+${currentCoin}&from=2022-09-05&sortBy=publishedAt&language=en&apiKey=54468e4d5a4447369c994441b35fe713`
+      `https://newsapi.org/v2/everything?q=+${currentCoin}&from=${monthAgo}&sortBy=publishedAt&language=en&apiKey=54468e4d5a4447369c994441b35fe713`
     );
     setNewsDataLoaded(true);
     return res.data;
