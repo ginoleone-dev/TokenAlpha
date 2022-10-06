@@ -30,7 +30,7 @@ export default function SelectCoin({ percent }) {
   return (
     <Container>
       <Typography textAlign={"center"} my={2} fontSize={20}>
-        Select the token you want to analize
+        Select the token you want to analyze
       </Typography>
       <Container
         style={{

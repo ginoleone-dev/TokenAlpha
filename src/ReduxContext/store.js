@@ -1,6 +1,6 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: { coin: "bitcoin", days: "20", avgPrice: "" } };
+const initialState = { value: { coin: "bitcoin", days: "20" } };
 
 // Reducer
 const coinSlice = createSlice({
@@ -13,7 +13,7 @@ const coinSlice = createSlice({
   },
 });
 
-// coinSlice.actions get the actions inside the reducers object
+// coinSlice.actions gets the actions inside the reducers object
 export const { setTokenAndDay } = coinSlice.actions;
 
 export const store = configureStore({

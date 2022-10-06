@@ -7,6 +7,8 @@ import Home from "./Components/Home";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Provider } from "react-redux";
 import { store } from "./ReduxContext/store";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./theme";
 
 function App() {
   const client = new QueryClient();
@@ -15,13 +17,15 @@ function App() {
       <QueryClientProvider client={client}>
         <BrowserRouter>
           <Provider store={store}>
-            <Header />
-            <Routes>
-              <Route path="/">
-                <Route index element={<Home />} />
-                <Route path="/About" element={<About />} />
-              </Route>
-            </Routes>
+            <ThemeProvider theme={theme}>
+              <Header />
+              <Routes>
+                <Route path="/">
+                  <Route index element={<Home />} />
+                  <Route path="/About" element={<About />} />
+                </Route>
+              </Routes>
+            </ThemeProvider>
           </Provider>
         </BrowserRouter>
       </QueryClientProvider>
