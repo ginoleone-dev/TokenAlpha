@@ -10,7 +10,7 @@ export default function News({ newsData, loaded, currentCoin }) {
     flexDirection: "column",
     minWidth: "600px",
 
-    marginBottom: "20px",
+    marginBottom: "80px",
 
     [theme.breakpoints.down("sm")]: {
       minWidth: "400px",
@@ -48,7 +48,7 @@ export default function News({ newsData, loaded, currentCoin }) {
       fontSize: "1.2rem",
     },
     [theme.breakpoints.down("sm")]: {
-      fontSize: "0.9rem",
+      fontSize: "1rem",
     },
   }));
 
@@ -84,11 +84,19 @@ export default function News({ newsData, loaded, currentCoin }) {
           newsData?.map((news, i) => (
             <InnerContainer key={i}>
               <TitleContainer>
-                <NewsTitle>{news.title}</NewsTitle>
+                <NewsTitle>
+                  <a
+                    href={news.url}
+                    target="_blank"
+                    style={{ color: "black", textDecoration: "none" }}
+                  >
+                    {news.title}
+                  </a>
+                </NewsTitle>
               </TitleContainer>
 
               <a href={news.url} target="_blank">
-                <img src={news.urlToImage} style={imageStyle} />
+                <img src={news.image} style={imageStyle} />
               </a>
             </InnerContainer>
           ))}

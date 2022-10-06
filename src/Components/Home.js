@@ -31,7 +31,7 @@ export default function Home() {
 
   const fetchNewsData = useQuery(["new", currentCoin], async () => {
     const res = await Axios.get(
-      `https://newsapi.org/v2/everything?q=+${currentCoin}&from=${monthAgo}&sortBy=publishedAt&language=en&apiKey=54468e4d5a4447369c994441b35fe713`
+      `https://gnews.io/api/v4/search?q=${currentCoin}&lang=en&token=3dce58a266da2613dbd9ce7312c8ed63`
     );
     setNewsDataLoaded(true);
     return res.data;
@@ -83,10 +83,6 @@ export default function Home() {
     const date = new Date(timestamp[0]).toString();
 
     return date.split(" ").slice(1, 3).join(" ");
-  });
-
-  const newDate = datesLast1Year?.map((date) => {
-    console.log(typeof date);
   });
 
   const avgPrice = (
