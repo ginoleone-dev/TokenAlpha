@@ -8,7 +8,7 @@ export default function PriceBarChart({
   capitalizedCoin,
   avgPrice,
   loaded,
-  priceBarChartData,
+  marketCapBarChartData,
   marketCapDifference,
   volumeDifference,
   lowestPrice,
@@ -52,7 +52,7 @@ export default function PriceBarChart({
           }}
         >
           <Typography fontSize={{ xs: 24, sm: 28 }} color={"#D6D6D6"}>
-            Price Action
+            Market Cap Activity
           </Typography>
           {displayChartType ? (
             <Button
@@ -70,11 +70,12 @@ export default function PriceBarChart({
             </Button>
           )}
         </Box>
+
         <Typography fontSize={{ xs: 15, sm: 25 }} color={"#D6D6D6"}>
-          Here is the price action of the last {currentDays} days for{" "}
-          {capitalizedCoin}
+          Here is the activity of the market cap for the last {currentDays} days
+          for {capitalizedCoin}
         </Typography>
-        {loaded && <BarChart chartData={priceBarChartData} />}
+        {loaded && <BarChart chartData={marketCapBarChartData} />}
         <Typography marginTop={2} fontSize={10} color={"white"}>
           Data provided by CoinGecko API
         </Typography>

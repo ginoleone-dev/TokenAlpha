@@ -1,6 +1,8 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 
-const initialState = { value: { coin: "bitcoin", days: "20" } };
+const initialState = {
+  value: { coinId: "bitcoin", coin: "bitcoin", days: 20 },
+};
 
 // Reducer
 const coinSlice = createSlice({

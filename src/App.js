@@ -13,7 +13,7 @@ import { theme } from "./theme";
 function App() {
   const client = new QueryClient();
   return (
-    <Box sx={{ minHeight: "100vh", backgroundColor: "#f7f4f3", width: "100%" }}>
+    <Box sx={{ minHeight: "100%", backgroundColor: "#f7f4f3", width: "100%" }}>
       <QueryClientProvider client={client}>
         <BrowserRouter>
           <Provider store={store}>

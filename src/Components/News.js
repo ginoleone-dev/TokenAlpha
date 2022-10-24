@@ -19,7 +19,7 @@ export default function News({ newsData, loaded, currentCoin }) {
       minWidth: "700px",
     },
     [theme.breakpoints.up("lg")]: {
-      minWidth: "900px",
+      minWidth: "800px",
     },
   });
 
@@ -71,12 +71,7 @@ export default function News({ newsData, loaded, currentCoin }) {
 
   return (
     <>
-      <Typography
-        textAlign={"center"}
-        marginTop={"30px"}
-        marginBottom={"12px"}
-        fontSize={{ xs: "28px", md: "35px" }}
-      >
+      <Typography textAlign={"center"} fontSize={{ xs: "28px", md: "35px" }}>
         Latest {currentCoin} news
       </Typography>
       <OuterContainer>
@@ -90,7 +85,7 @@ export default function News({ newsData, loaded, currentCoin }) {
                     target="_blank"
                     style={{ color: "black", textDecoration: "none" }}
                   >
-                    {news.title}
+                    {news.title} - ({news.source.name})
                   </a>
                 </NewsTitle>
               </TitleContainer>
