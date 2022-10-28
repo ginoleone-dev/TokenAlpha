@@ -27,7 +27,7 @@ export default forwardRef(function PriceBarChart(
         alignItems: "center",
         flexDirection: { xs: "column", lg: "row" },
         backgroundColor: "#333533",
-        p: "50px 20px",
+        p: "30px 10px",
         mb: "20px",
       }}
     >
@@ -99,7 +99,6 @@ export default forwardRef(function PriceBarChart(
             gap: 3,
             color: "white",
             p: "10px 20px",
-            marginTop: { xs: "20px" },
           }}
         >
           <Box
@@ -163,7 +162,6 @@ export default forwardRef(function PriceBarChart(
             minWidth: { xs: "100%" },
             color: "white",
             p: "10px 20px",
-            marginTop: { xs: "20px" },
           }}
         >
           <Box

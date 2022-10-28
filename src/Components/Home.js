@@ -207,7 +207,7 @@ export default function Home() {
 
   return (
     <Box>
-      <Box sx={{ mt: "40px" }}>
+      <Box sx={{ mt: { xs: "5px", md: "20px" } }}>
         <Container
           // Introduction section
           sx={{

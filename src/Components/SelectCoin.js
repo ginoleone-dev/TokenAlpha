@@ -61,7 +61,11 @@ export default function SelectCoin({ scrollRef }) {
 
   return (
     <Container>
-      <Typography textAlign={"center"} marginTop={12} fontSize={20}>
+      <Typography
+        textAlign={"center"}
+        marginTop={{ xs: "30px", md: "50px" }}
+        fontSize={20}
+      >
         Select a token
       </Typography>
       <form>
@@ -159,7 +163,7 @@ export default function SelectCoin({ scrollRef }) {
             display: "flex",
             justifyContent: "center",
             maxWidth: "310px",
-            mb: 15,
+            mb: 8,
           }}
         >
           <Button
