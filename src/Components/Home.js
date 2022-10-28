@@ -10,10 +10,11 @@ import News from "./News";
 import axios from "axios";
 import SelectOtherCoins from "./SelectOtherCoins";
 import { setTokenAndDay } from "../ReduxContext/store";
-import { display } from "@mui/system";
 
 export default function Home() {
   const dispatch = useDispatch();
+
+  const scrollRef = useRef(null);
 
   // Redux
   const currentCoin = useSelector((state) => state.tokenInfo.value.coin);
@@ -24,7 +25,7 @@ export default function Home() {
 
   // Used to display the current coin with a capital letter since the api doesnt allow capital letters
   const capitalizedCoin =
-    currentCoin.charAt(0).toUpperCase() + currentCoin.slice(1);
+    currentCoin?.charAt(0)?.toUpperCase() + currentCoin?.slice(1);
 
   // fetch function for general token data
   const fetchTokenData = async () => {
@@ -136,8 +137,9 @@ export default function Home() {
       {
         label: `Price of ${capitalizedCoin} Last ${currentDays} days (in USD)`,
         data: pricesLast1Year,
-        backgroundColor: ["#D6D6D6"],
-        color: "#D6D6D6",
+        backgroundColor: ["white"],
+        borderColor: "#D6D6D6",
+        color: "#white",
         tension: 0,
       },
     ],
@@ -155,7 +157,7 @@ export default function Home() {
         // 'legend' now within object 'plugins {}'
         legend: {
           labels: {
-            color: "#D6D6D6", // not 'fontColor:' anymore
+            color: "white", // not 'fontColor:' anymore
 
             font: {
               size: 14, // 'size' now within object 'font {}'
@@ -172,8 +174,9 @@ export default function Home() {
       {
         label: `Market Cap of ${capitalizedCoin} Last ${currentDays} days (in USD)`,
         data: marketCapLast1Year,
-        backgroundColor: ["#D6D6D6"],
-        color: "#D6D6D6",
+        backgroundColor: ["white"],
+        borderColor: "#D6D6D6",
+        color: "#white",
         tension: 0,
       },
     ],
@@ -204,7 +207,7 @@ export default function Home() {
 
   return (
     <Box>
-      <Box sx={{ mt: "20px" }}>
+      <Box sx={{ mt: "40px" }}>
         <Container
           // Introduction section
           sx={{
@@ -247,7 +250,7 @@ export default function Home() {
           </Container>
         </Container>
         <Container sx={{ display: "flex", justifyContent: "center" }}>
-          <Selectcoin />
+          <Selectcoin scrollRef={scrollRef} />
         </Container>
         <Box>
           {/* {displayChartType ? (
@@ -265,6 +268,7 @@ export default function Home() {
           )} */}
           {displayChartType ? (
             <PriceBarChart
+              ref={scrollRef}
               displayChartType={displayChartType}
               setDisplayChartType={setDisplayChartType}
               currentDays={currentDays}
