@@ -1,29 +1,33 @@
 import { Box, Button, Container, Typography } from "@mui/material";
+import { forwardRef } from "react";
 import BarChart from "../Graphs/BarChart";
 
-export default function PriceBarChart({
-  displayChartType,
-  setDisplayChartType,
-  currentDays,
-  capitalizedCoin,
-  avgPrice,
-  loaded,
-  marketCapBarChartData,
-  marketCapDifference,
-  volumeDifference,
-  lowestPrice,
-  highestPrice,
-}) {
+export default forwardRef(function PriceBarChart(
+  {
+    displayChartType,
+    setDisplayChartType,
+    currentDays,
+    capitalizedCoin,
+    avgPrice,
+    loaded,
+    marketCapBarChartData,
+    marketCapDifference,
+    volumeDifference,
+    lowestPrice,
+    highestPrice,
+  },
+  ref
+) {
   return (
     <Box
+      ref={ref}
       sx={{
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: { xs: "column", lg: "row" },
         backgroundColor: "#333533",
-        p: "50px 20px",
-        mt: "20px",
+        p: "30px 10px",
         mb: "20px",
       }}
     >
@@ -96,7 +100,6 @@ export default function PriceBarChart({
             gap: 3,
             color: "white",
             p: "10px 20px",
-            marginTop: { xs: "20px" },
           }}
         >
           <Box
@@ -160,7 +163,6 @@ export default function PriceBarChart({
             minWidth: { xs: "100%" },
             color: "white",
             p: "10px 20px",
-            marginTop: { xs: "20px" },
           }}
         >
           <Box
@@ -227,4 +229,4 @@ export default function PriceBarChart({
       </Container>
     </Box>
   );
-}
+});

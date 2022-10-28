@@ -283,6 +283,7 @@ export default function Home() {
             />
           ) : (
             <MarketCapBarChart
+              ref={scrollRef}
               displayChartType={displayChartType}
               setDisplayChartType={setDisplayChartType}
               currentDays={currentDays}
