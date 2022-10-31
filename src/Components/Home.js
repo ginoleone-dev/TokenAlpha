@@ -44,12 +44,15 @@ export default function Home() {
   // Fetch function for news data
 
   const fetchNewsData = async () => {
-    const res = await axios.get(
-      `https://gnews.io/api/v4/search?q=${currentCoin}&lang=en&token=3dce58a266da2613dbd9ce7312c8ed63`
-    );
+    const res = await axios
+      .get(
+        `https://gnews.io/api/v4/search?q=${currentCoin}&lang=en&token=3dce58a266da2613dbd9ce7312c8ed63`
+      )
+      .catch((err) => setNewsDataLoaded(false));
     setNewsDataLoaded(true);
     return res.data;
   };
+
   const { data: news } = useQuery(["new", currentCoin], fetchNewsData);
   const newsData = news?.articles.slice(0, 6);
 
@@ -253,19 +256,6 @@ export default function Home() {
           <Selectcoin scrollRef={scrollRef} />
         </Container>
         <Box>
-          {/* {displayChartType ? (
-            <Button
-              onClick={() => setDisplayChartType((prevValue) => !prevValue)}
-            >
-              Display Market Cap
-            </Button>
-          ) : (
-            <Button
-              onClick={() => setDisplayChartType((prevValue) => !prevValue)}
-            >
-              Display Price Action
-            </Button>
-          )} */}
           {displayChartType ? (
             <PriceBarChart
               ref={scrollRef}
@@ -320,7 +310,7 @@ export default function Home() {
             my: "15px",
           }}
         >
-          <SelectOtherCoins />
+          <SelectOtherCoins scrollRef={scrollRef} />
         </Container>
       </Box>
     </Box>

@@ -69,14 +69,14 @@ export default function News({ newsData, loaded, currentCoin }) {
     maxWidth: "140px",
   };
 
-  return (
-    <>
-      <Typography textAlign={"center"} fontSize={{ xs: "28px", md: "35px" }}>
-        Latest {currentCoin} news
-      </Typography>
-      <OuterContainer>
-        {loaded &&
-          newsData?.map((news, i) => (
+  if (newsData) {
+    return (
+      <>
+        <Typography textAlign={"center"} fontSize={{ xs: "28px", md: "35px" }}>
+          Latest {currentCoin} news
+        </Typography>
+        <OuterContainer>
+          {newsData?.map((news, i) => (
             <InnerContainer key={i}>
               <TitleContainer>
                 <NewsTitle>
@@ -95,7 +95,10 @@ export default function News({ newsData, loaded, currentCoin }) {
               </a>
             </InnerContainer>
           ))}
-      </OuterContainer>
-    </>
-  );
+        </OuterContainer>
+      </>
+    );
+  } else {
+    return <div></div>;
+  }
 }

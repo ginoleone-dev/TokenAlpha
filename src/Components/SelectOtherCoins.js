@@ -1,13 +1,16 @@
-import React from "react";
+import { React, forwardRef } from "react";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Box, Container, styled, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { setTokenAndDay } from "../ReduxContext/store";
+import { setTokenAndDay, setOnlyToken } from "../ReduxContext/store";
 
-export default function SelectOtherCoins() {
+export default function SelectOtherCoins({ scrollRef }) {
   // Redux
   const dispatch = useDispatch();
+
+  const scrollToRef = () =>
+    scrollRef.current.scrollIntoView({ behavior: "smooth" });
 
   const fetchTrendingCoins = async () => {
     const res = await axios.get(
@@ -77,9 +80,10 @@ export default function SelectOtherCoins() {
                 <Typography
                   name={coin?.item?.name}
                   value={coin?.item?.id}
-                  onClick={() =>
-                    dispatch(setTokenAndDay({ coin: coin?.item?.id, days: 20 }))
-                  }
+                  onClick={() => {
+                    dispatch(setOnlyToken(coin?.item?.id));
+                    scrollToRef();
+                  }}
                   sx={{
                     fontSize: "18px",
                     textAlign: "center",
