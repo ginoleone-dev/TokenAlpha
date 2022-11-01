@@ -56,13 +56,24 @@ export default function Home() {
   const { data: news } = useQuery(["new", currentCoin], fetchNewsData);
   const newsData = news?.articles.slice(0, 6);
 
-  // MarketCap
+  // Fetch function for general token info (used for displaying current price and current mkcap)
+  const fetchCoinCurrent = async () => {
+    const res = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/${currentCoin}?tickers=false&market_data=true&community_data=false&developer_data=false&sparkline=false`
+    );
+    return res.data;
+  };
 
-  // const marketCapByDays = parentCoinData?.market_caps
-  //   ?.slice(-currentDays)
-  //   ?.map((marketCap) => {
-  //     return marketCap[1];
-  //   });
+  const { data: generalTokenList } = useQuery(
+    ["coin", currentCoin],
+    fetchCoinCurrent
+  );
+
+  const currentPrice =
+    generalTokenList?.market_data?.current_price?.usd?.toFixed(6);
+  const currentMarketCap = generalTokenList?.market_data?.market_cap?.usd;
+
+  // Market Cap
 
   const lastMarketCap = parentCoinData?.market_caps?.slice(-currentDays)[
     currentDays - 1
@@ -120,15 +131,15 @@ export default function Home() {
   const avgPrice = (
     pricesLast1Year?.reduce((sum, currentPrice) => sum + currentPrice) /
     currentDays
-  )?.toFixed(2);
+  )?.toFixed(6);
 
   const lowestPrice = pricesLast1Year
     ?.reduce((sum, currentPrice) => Math.min(sum, currentPrice))
-    ?.toFixed(2);
+    ?.toFixed(4);
 
   const highestPrice = pricesLast1Year
     ?.reduce((sum, currentPrice) => Math.max(sum, currentPrice))
-    ?.toFixed(2);
+    ?.toFixed(4);
 
   // Charting
 
@@ -261,6 +272,8 @@ export default function Home() {
               ref={scrollRef}
               displayChartType={displayChartType}
               setDisplayChartType={setDisplayChartType}
+              currentPrice={currentPrice}
+              currentMarketCap={currentMarketCap}
               currentDays={currentDays}
               capitalizedCoin={capitalizedCoin}
               avgPrice={avgPrice}
@@ -276,6 +289,8 @@ export default function Home() {
               ref={scrollRef}
               displayChartType={displayChartType}
               setDisplayChartType={setDisplayChartType}
+              currentPrice={currentPrice}
+              currentMarketCap={currentMarketCap}
               currentDays={currentDays}
               capitalizedCoin={capitalizedCoin}
               avgPrice={avgPrice}

@@ -48,12 +48,19 @@ export default function SelectCoin({ scrollRef }) {
     coinId: null,
   });
 
+  const [isInputFilled, setIsInputFilled] = useState({
+    coin: false,
+    days: false,
+  });
   // Data for autocomplete
 
   // Event Handler
   const handleCoinChange = (e) => {
     setCoinDay((values) => {
       return { ...values, [e.target.name]: e.target.value };
+    });
+    setIsInputFilled((values) => {
+      return { ...values, [e.target.name]: true };
     });
   };
 
@@ -92,19 +99,24 @@ export default function SelectCoin({ scrollRef }) {
             </InputLabel>
             {tokenIdList && (
               <Autocomplete
-                disablePortal
                 options={tokenIdList}
-                name="coin"
                 value={coinDay.coin}
+                name={"coin"}
                 onChange={(e, newCoin) =>
                   setCoinDay((values) => {
                     return { ...values, coin: newCoin };
+                  })
+                }
+                onInputChange={(e, input) =>
+                  setIsInputFilled((values) => {
+                    return { ...values, coin: true };
                   })
                 }
                 sx={{ minWidth: "200px" }}
                 renderInput={(params) => (
                   <TextField
                     {...params}
+                    name={"coin"}
                     sx={{
                       "& .MuiInputLabel-shrink ": {
                         display: "none",
@@ -130,14 +142,11 @@ export default function SelectCoin({ scrollRef }) {
             </InputLabel>
             <Select
               className="muiSelect"
-              labelId="demo-simple-select-autowidth-label"
-              id="demo-simple-select-autowidth"
               name="days"
               onChange={handleCoinChange}
               value={coinDay.days}
               autoWidth
               required
-              label="Token"
               sx={{
                 "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
                   borderColor: "black",
@@ -167,6 +176,7 @@ export default function SelectCoin({ scrollRef }) {
           }}
         >
           <Button
+            disabled={(isInputFilled.coin && isInputFilled.days) === false}
             onClick={() => {
               dispatch(
                 setTokenAndDay({ coin: coinDay.coin, days: coinDay.days })
