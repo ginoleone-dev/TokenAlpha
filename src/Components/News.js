@@ -19,7 +19,7 @@ export default function News({ newsData, loaded, currentCoin }) {
       minWidth: "700px",
     },
     [theme.breakpoints.up("lg")]: {
-      minWidth: "800px",
+      minWidth: "900px",
     },
   });
 
@@ -83,6 +83,7 @@ export default function News({ newsData, loaded, currentCoin }) {
                   <a
                     href={news.url}
                     target="_blank"
+                    rel="noreferrer"
                     style={{ color: "black", textDecoration: "none" }}
                   >
                     {news.title} - ({news.source.name})
@@ -90,8 +91,8 @@ export default function News({ newsData, loaded, currentCoin }) {
                 </NewsTitle>
               </TitleContainer>
 
-              <a href={news.url} target="_blank">
-                <img src={news.image} style={imageStyle} />
+              <a href={news.url} target="_blank" rel="noreferrer">
+                <img src={news.image} alt={"newsImage"} style={imageStyle} />
               </a>
             </InnerContainer>
           ))}

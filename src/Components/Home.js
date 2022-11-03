@@ -10,6 +10,7 @@ import News from "./News";
 import axios from "axios";
 import SelectOtherCoins from "./SelectOtherCoins";
 import { setTokenAndDay } from "../ReduxContext/store";
+import TopTokensPieChart from "./TopTokensPieChart";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -70,8 +71,25 @@ export default function Home() {
   );
 
   const currentPrice =
-    generalTokenList?.market_data?.current_price?.usd?.toFixed(6);
+    generalTokenList?.market_data?.current_price?.usd?.toFixed(4);
+
   const currentMarketCap = generalTokenList?.market_data?.market_cap?.usd;
+
+  // Fetch function for 8 top tokens, used in pie chart
+
+  const fetchTopTokens = async () => {
+    const res = await axios.get(
+      `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=8&page=1&sparkline=false`
+    );
+    return res.data;
+  };
+
+  const { data: topTokensListData } = useQuery(["topToken"], fetchTopTokens);
+
+  const topTokensNamesList = topTokensListData?.map((token) => token?.name);
+  const topTokensMarketCapList = topTokensListData?.map(
+    (token) => token?.market_cap
+  );
 
   // Market Cap
 
@@ -131,7 +149,7 @@ export default function Home() {
   const avgPrice = (
     pricesLast1Year?.reduce((sum, currentPrice) => sum + currentPrice) /
     currentDays
-  )?.toFixed(6);
+  )?.toFixed(4);
 
   const lowestPrice = pricesLast1Year
     ?.reduce((sum, currentPrice) => Math.min(sum, currentPrice))
@@ -154,7 +172,7 @@ export default function Home() {
         backgroundColor: ["white"],
         borderColor: "#D6D6D6",
         color: "#white",
-        tension: 0,
+        tension: 0.1,
       },
     ],
     options: {
@@ -191,7 +209,7 @@ export default function Home() {
         backgroundColor: ["white"],
         borderColor: "#D6D6D6",
         color: "#white",
-        tension: 0,
+        tension: 0.1,
       },
     ],
     options: {
@@ -216,6 +234,41 @@ export default function Home() {
           },
         },
       },
+    },
+  };
+
+  const TopTokensPieChartData = {
+    labels: topTokensNamesList,
+    datasets: [
+      {
+        label: "Top tokens by market cap",
+        data: topTokensMarketCapList,
+        backgroundColor: [
+          "rgba(33,37,41, 0.8)",
+          "rgba(52,58,64, 0.8)",
+          "rgba(73,80,87,0.8)",
+          "rgba(108,117,125, 0.8)",
+          "rgba(206,212,218, 0.8)",
+          "rgba(222, 226, 230, 1)",
+          "rgba(233, 236, 239, 1)",
+          "rgba(248, 249, 250, 1)",
+        ],
+        borderColor: [
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+          "rgba(255,255,255, 1)",
+        ],
+        borderWidth: 1,
+      },
+    ],
+    options: {
+      responsive: true,
+      color: "rgba(255,255,255, 1)",
     },
   };
 
@@ -303,6 +356,14 @@ export default function Home() {
             />
           )}
         </Box>
+      </Box>
+      <Box>
+        {topTokensListData && (
+          <TopTokensPieChart
+            chartData={TopTokensPieChartData}
+            displayData={topTokensListData}
+          />
+        )}
       </Box>
       <Box
         sx={{
