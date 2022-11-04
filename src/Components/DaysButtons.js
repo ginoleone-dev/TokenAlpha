@@ -14,7 +14,7 @@ export default function () {
             sx={{
               backgroundColor: "#D6D6D6",
               "&:hover": { backgroundColor: "#E9EAEC" },
-              maxHeight: "35px",
+              maxHeight: "30px",
               fontSize: { xs: "0.8rem", md: "1rem" },
             }}
             onClick={() => dispatch(setOnlyDays(day))}

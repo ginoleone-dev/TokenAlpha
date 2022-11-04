@@ -38,7 +38,7 @@ export default function News({ newsData, loaded, currentCoin }) {
       maxWidth: "700px",
     },
     [theme.breakpoints.up("lg")]: {
-      maxWidth: "800px",
+      maxWidth: "1000px",
     },
   }));
 
