@@ -15,11 +15,14 @@ const coinSlice = createSlice({
     setOnlyToken: (state, action) => {
       state.value.coin = action.payload;
     },
+    setOnlyDays: (state, action) => {
+      state.value.days = action.payload;
+    },
   },
 });
 
 // coinSlice.actions gets the actions inside the reducers object
-export const { setTokenAndDay, setOnlyToken } = coinSlice.actions;
+export const { setTokenAndDay, setOnlyToken, setOnlyDays } = coinSlice.actions;
 
 export const store = configureStore({
   reducer: {

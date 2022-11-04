@@ -11,6 +11,7 @@ import axios from "axios";
 import SelectOtherCoins from "./SelectOtherCoins";
 import { setTokenAndDay } from "../ReduxContext/store";
 import TopTokensPieChart from "./TopTokensPieChart";
+import DaysButtons from "./DaysButtons";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -39,7 +40,8 @@ export default function Home() {
 
   const { data: parentCoinData } = useQuery(
     ["token", currentCoin],
-    fetchTokenData
+    fetchTokenData,
+    { staleTime: Infinity }
   );
 
   // Fetch function for news data
@@ -124,6 +126,8 @@ export default function Home() {
       firstVolume?.toFixed(2)) *
     100
   )?.toFixed(2);
+
+  console.log(newsData);
 
   // parentCoinData.prices gives an array of tuples the contain a timestamp for the day and the price, same for mkcap and volume.
   const pricesLast1Year = parentCoinData?.prices
